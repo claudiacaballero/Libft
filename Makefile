@@ -6,13 +6,22 @@
 #    By: ccaballe <ccaballe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 16:36:29 by ccaballe          #+#    #+#              #
-#    Updated: 2022/10/03 17:57:47 by ccaballe         ###   ########.fr        #
+#    Updated: 2022/10/31 18:39:35 by ccaballe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ifneq (,$(findstring xterm,${TERM}))
+	LIGHTPURPLE  := $(shell tput -Txterm setaf 5)
+	YELLOW       := $(shell tput -Txterm setaf 3)
+	GREEN        := $(shell tput -Txterm setaf 2)
+	RED	         := $(shell tput -Txterm setaf 1)
+	RESET    	 := $(shell tput -Txterm setaf 0)
+else
+	endif
+
 NAME = libft.a
 BNAME = .bonus
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
@@ -65,28 +74,32 @@ DEPS = ${SRCS:.c=.d}
 DEPSBONUS = ${SRCSBONUS:.c=.d}
 
 %.o: %.c Makefile
-	${CC} ${CFLAGS} -I./ -c $< -o $@
+	@${CC} ${CFLAGS} -MMD -I./ -c $< -o $@
+	@echo "${LIGHTPURPLE}compiling:	${YELLOW}$<"
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	ar crs ${NAME} ${OBJS}
+	@ar crs ${NAME} ${OBJS}
+	@echo "	${GREEN}\ncompilation successful\n"
 
 -include ${DEPS}
 
 bonus: ${BNAME}
 
 ${BNAME}: ${OBJS} ${OBJSBONUS}
-	ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+	@ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+	@echo "	${GREEN}\nbonus compilation successful\n"
 	@touch $@
 
 -include $(DEPSBONUS)
 
 clean:
-	${RM} ${OBJS} ${DEPS} ${OBJSBONUS} ${DEPSBONUS}
+	@${RM} ${OBJS} ${DEPS} ${OBJSBONUS} ${DEPSBONUS}
+	@echo "${GREEN}\ndestruction successful\n"
 
 fclean: clean
-	${RM} ${NAME} ${BNAME}
+	@${RM} ${NAME} ${BNAME}
 
 re: fclean all
 
