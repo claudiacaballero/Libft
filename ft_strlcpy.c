@@ -6,7 +6,7 @@
 /*   By: ccaballe <ccaballe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:27:43 by ccaballe          #+#    #+#             */
-/*   Updated: 2022/09/21 15:23:31 by ccaballe         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:31:54 by ccaballe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	if (dstsize == 0)
 		return (size);
 	i = 0;
-	while (src[i] && i < dstsize - 1)
+	while (src[i] != '\0' && i < dstsize - 1)
 	{
 		dst[i] = src[i];
 		i++;

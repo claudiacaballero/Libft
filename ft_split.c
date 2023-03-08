@@ -6,12 +6,11 @@
 /*   By: ccaballe <ccaballe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:12:30 by ccaballe          #+#    #+#             */
-/*   Updated: 2022/09/29 16:15:32 by ccaballe         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:32:02 by ccaballe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_num_words(const char *s, char c)
 {
@@ -84,13 +83,3 @@ char	**ft_split(char const *s, char c)
 	m[row] = 0;
 	return (m);
 }
-/*
-int	main(void)
-{	
-	char	**tab;
-
-	tab = ft_split("xxxxxxxxhello!", 'x');
-	printf("%d\n", ft_num_words("xxxxxxxxhello!", 'x'));
-	printf("%s\n", tab[0]);
-	return (0);
-}*/
